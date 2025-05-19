@@ -1,5 +1,8 @@
 extends Camera2D
 
+# See WARNING's below for detail on custom control binding. Apart from scroll zooming, every key and mouse
+# press must be bound manually by the developer.
+
 @export var allow_mouse_controls: bool = true
 @export var allow_keyboard_controls: bool = true
 
@@ -12,7 +15,8 @@ extends Camera2D
 @export_group("Camera Zoom Variables")
 ## Relative zoom in every scroll wheel tick.
 @export var zoom_step: float = 0.2
-## Speed at which the camera reaches the next target zoom.
+## Speed at which the camera reaches the next target zoom. Really funky things can happen
+## if x and y are set to different values...
 @export var zoom_speed: Vector2 = Vector2(10, 10)
 
 @export_group("Directional Limits")
@@ -37,6 +41,10 @@ func _on_resolution_change() -> void:
 	camera_BR = get_viewport_rect().size / 2
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not allow_mouse_controls:
+		return
+	
+	# Zooming by scrolling with the middle mouse button
 	if event is InputEventMouse:
 		if event.is_pressed() and not event.is_echo():
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
@@ -45,8 +53,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				zoom_camera(-zoom_step)
 			target_zoom = target_zoom.clamp(Vector2.ONE*0.5, Vector2.INF)
 	
+	# Camera translation by clicking and dragging
 	if event is InputEventMouseMotion:
-		if event.button_mask == MOUSE_BUTTON_MASK_MIDDLE:
+		# WARNING: The dragging control must be defined WITHIN THIS PROJECT
+		if Input.is_action_pressed("cam_drag"):
 			position -= event.relative / zoom
 
 func _process(delta: float) -> void:
@@ -72,6 +82,7 @@ func _process(delta: float) -> void:
 	if limit_BR == Vector2.ZERO and limit_TL == Vector2.ZERO:
 		return
 	
+	# Camera limit application
 	if actual_TL.x < limit_TL.x:
 		position.x += limit_TL.x - actual_TL.x
 	if actual_TL.y < limit_TL.y:
