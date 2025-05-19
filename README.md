@@ -1,4 +1,4 @@
-# godot-strategy-camera
+# StrategyCamera
 A simple and intuitive 2d strategy game camera implementation.
 #### Features
 - Togglable mouse & keyboard controls
