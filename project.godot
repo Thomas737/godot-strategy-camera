@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="StrategyCam"
+config/name="strategy-camera"
+config/tags=PackedStringArray("plugin")
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [display]
@@ -20,7 +21,7 @@ window/size/viewport_height=360
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/strategy_cam/plugin.cfg")
+enabled=PackedStringArray("res://addons/strategy_camera/plugin.cfg")
 
 [input]
 

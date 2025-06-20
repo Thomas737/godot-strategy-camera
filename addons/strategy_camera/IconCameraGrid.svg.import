@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dv3cw6mamb6rl"
-path="res://.godot/imported/icon_camera_grid.svg-466e9cc8bcf9b1a9a5463aaf2cf74537.ctex"
+path="res://.godot/imported/IconCameraGrid.svg-786fb1445d0d3080bef5fce99f6bcd2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/strategy_cam/icon_camera_grid.svg"
-dest_files=["res://.godot/imported/icon_camera_grid.svg-466e9cc8bcf9b1a9a5463aaf2cf74537.ctex"]
+source_file="res://addons/strategy_camera/IconCameraGrid.svg"
+dest_files=["res://.godot/imported/IconCameraGrid.svg-786fb1445d0d3080bef5fce99f6bcd2c.ctex"]
 
 [params]
 
